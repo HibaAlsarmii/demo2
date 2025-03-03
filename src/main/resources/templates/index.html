@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>My Book</h1>  <!-- Updated to be more readable -->
+    <h2 th:text="${message != null ? message : 'Default Message'}"></h2>  <!-- Display message -->
+    <p th:text="${bookName} ?: 'No book name available'"></p><!-- Display book name -->
+
+    <p th:text="${Books.size()}"> </p>
+
+
+    <table >
+        <tr th:each="book : ${Books}">
+            <td th:text="${book.getBookName()}"></td>
+        </tr>
+
+    </table>
+</body>
+
+</html>
+
