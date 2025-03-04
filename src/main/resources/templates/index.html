@@ -3,23 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Book List</title>
 </head>
 <body>
-    <h1>My Book</h1>  <!-- Updated to be more readable -->
-    <h2 th:text="${message != null ? message : 'Default Message'}"></h2>  <!-- Display message -->
-    <p th:text="${bookName} ?: 'No book name available'"></p><!-- Display book name -->
+<h1>My Book</h1>
+<h2 th:text="${message}"></h2>
 
-    <p th:text="${Books.size()}"> </p>
+<p>Total Books: <span th:text="${Books.size()}"></span></p>
+
+<table border="1">
+    <tr>
+        <th>Book Name</th>
+    </tr>
+    <tr th:each="book : ${Books}">
+        <td th:text="${book.bookName}"></td>
+    </tr>
 
 
-    <table >
-        <tr th:each="book : ${Books}">
-            <td th:text="${book.getBookName()}"></td>
-        </tr>
+</table>
 
-    </table>
+<a th:href="@{/addBook}">
+    <button>View Details</button>
+</a>
 </body>
-
 </html>
-
