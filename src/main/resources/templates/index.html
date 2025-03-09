@@ -4,26 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Book List</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
-<h1>My Book</h1>
-<h2 th:text="${message}"></h2>
 
-<p>Total Books: <span th:text="${Books.size()}"></span></p>
+<h1>📚 Book List</h1>
 
-<table border="1">
+<!-- ✅ Add Book Form -->
+<form th:action="@{/addBook}" method="post">
+    <input type="text" name="bookName" placeholder="Enter Book Name" required>
+    <button type="submit">➕ Add Book</button>
+</form>
+
+<!-- ✅ Display Books -->
+<table>
     <tr>
         <th>Book Name</th>
+        <th>Action</th>
     </tr>
     <tr th:each="book : ${Books}">
         <td th:text="${book.bookName}"></td>
+        <td>
+            <!-- ✅ Edit Button (NEW) -->
+            <a th:href="@{/editBook/{id}(id=${book.id})}">
+                <button class="edit">✏️ Edit</button>
+            </a>
+
+            <!-- ✅ Delete Button (Existing) -->
+            <form th:action="@{/deleteBook}" method="delete" style="display:inline;">
+                <input type="hidden" name="bookId" th:value="${book.id}">
+                <button type="submit" class="delete">❌ Delete</button>
+            </form>
+        </td>
     </tr>
-
-
 </table>
 
-<a th:href="@{/addBook}">
-    <button>View Details</button>
-</a>
 </body>
 </html>

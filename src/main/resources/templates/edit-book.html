@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Book</title>
+    <link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+
+<h1>✏️ Edit Book</h1>
+
+<!-- ✅ Edit Book Form -->
+<form th:action="@{/updateBook}" method="post">
+    <input type="hidden" name="bookId" th:value="${book.id}">
+    <label for="bookName">New Book Name:</label>
+    <input type="text" id="bookName" name="bookName" th:value="${book.bookName}" required>
+    <button type="submit">✅ Save Changes</button>
+</form>
+
+<!-- Back Button -->
+<a href="/home">
+    <button>🔙 Back to Home</button>
+</a>
+
+</body>
+</html>
